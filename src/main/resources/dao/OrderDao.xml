@@ -18,7 +18,8 @@
         <result property="completed" column="completed"/>
         <result property="uid" column="uid"/>
         <result property="registration" column="registration"/>
-        
+        <result property="payWay" column="pay_way"/>
+
         <collection property="goodsInfos" javaType="ArrayList" ofType="com.newler.jdweb.pojo.GoodsInfo" columnPrefix="g_">
             <id column="id" property="id"/>
             <result property="goodsUrl" column="url"/>

@@ -51,7 +51,7 @@ public class SpringDaoConfig {
 
     @Bean
     public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory) throws Exception {
-        return  new SqlSessionTemplate(sqlSessionFactory);
+        return new SqlSessionTemplate(sqlSessionFactory);
     }
 
     @Bean

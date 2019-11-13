@@ -1,17 +1,17 @@
 package com.newler.jdweb.dto;
 
 public class OrderInfo {
-    private long id;
+    private Long id;
     private String uid;
     private String carriageId;
     private String receiverInfo;
     private String status;
-    private float settlementPrice;
     private String payWay;
     private String goodsInfo;
-    private boolean registration;
-    private float price;
     private int goodsNum;
+    private boolean registration;
+    private float settlementPrice;
+    private float price;
 
     public void setPrice(float price) {
         this.price = price;

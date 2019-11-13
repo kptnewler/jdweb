@@ -22,7 +22,7 @@ public class OrderController {
     public ModelAndView getOrderList(@RequestParam(name = "uid") String uid) {
         List<OrderInfo> orderInfos = new ArrayList<>();
         if (uid == null || uid.isEmpty()) {
-            orderInfos.addAll(orderService.getOrderList());
+//            orderInfos.addAll(orderService.getOrderList());
         }
         ModelAndView modelAndView = new ModelAndView();
         return modelAndView;

@@ -1,8 +1,6 @@
-package com.newler.jdweb.dao;
-
-
 import com.newler.jdweb.config.SpringDaoConfig;
 import com.newler.jdweb.config.SpringWebConfig;
+import com.newler.jdweb.dao.OrderDao;
 import com.newler.jdweb.pojo.Order;
 import org.junit.Test;
 import org.junit.runner.RunWith;
