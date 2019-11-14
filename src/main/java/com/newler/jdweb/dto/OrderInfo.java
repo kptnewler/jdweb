@@ -12,6 +12,7 @@ public class OrderInfo {
     private boolean registration;
     private float settlementPrice;
     private float price;
+    private String platform;
 
     public void setPrice(float price) {
         this.price = price;
@@ -98,5 +99,17 @@ public class OrderInfo {
 
     public void setGoodsNum(int goodsNum) {
         this.goodsNum = goodsNum;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
     }
 }

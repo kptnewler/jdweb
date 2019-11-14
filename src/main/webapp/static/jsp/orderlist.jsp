@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>订单详情</title>
-    <link rel="stylesheet" href="webjars/layui/2.5.5/css/layui.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/layui/2.5.5/css/layui.css">
 </head>
 <body>
     <table class="layui-hide" id="test"></table>
@@ -21,4 +21,4 @@
     <!-- 这里的 checked 的状态只是演示 -->
     <input type="checkbox" name="registration" value="{{d.id}}" title="报单">
 </script>
-<script src="webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/webjars/jquery/3.4.1/jquery.min.js"></script>

@@ -19,6 +19,8 @@
         <result property="uid" column="uid"/>
         <result property="registration" column="registration"/>
         <result property="payWay" column="pay_way"/>
+        <result property="goodsNum" column="goods_num"/>
+        <result property="platform" column="platform"/>
 
         <collection property="goodsInfos" javaType="ArrayList" ofType="com.newler.jdweb.pojo.GoodsInfo" columnPrefix="g_">
             <id column="id" property="id"/>
@@ -28,9 +30,13 @@
         </collection>
     </resultMap>
     <select id="getOrderList" resultMap="orderResult" parameterType="int">
-        SELECT o.*,g.id AS g_id, g.price AS g_price, g.name AS g_name, g.goods_url AS g_url
+        SELECT o.*,g.id AS g_id, g.price AS g_price, g.name AS g_name, g.goods_url AS g_url, og.num AS goods_num
         FROM  orderinfo AS o LEFT JOIN ordergoods AS og ON o.id = og.order_id
-        LEFT JOIN goodsinfo AS g ON og.goods_id = g.id;
+        LEFT JOIN goodsinfo AS g ON og.goods_id = g.id WHERE o.receiver_name = '白鹿原';
     </select>
+
+    <insert id="addOrderGoods" parameterType="com.newler.jdweb.pojo.Order">
+
+    </insert>
 
 </mapper>

@@ -79,14 +79,27 @@ public class Order implements Serializable {
     private float settlementPrice;
 
     /**
-     *
+     *24883 05720 74229 31896 28237 61652 07645 18575 96615
      * isNullAble:1
      */
     private String uid;
 
     private String payWay;
 
+    private String platform;
+
     private List<GoodsInfo> goodsInfos;
+
+    private int goodsNum;
+
+
+    public int getGoodsNum() {
+        return goodsNum;
+    }
+
+    public void setGoodsNum(int goodsNum) {
+        this.goodsNum = goodsNum;
+    }
 
     /**
      *
@@ -235,6 +248,14 @@ public class Order implements Serializable {
         this.registration = registration;
     }
 
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -252,7 +273,9 @@ public class Order implements Serializable {
                 ", settlementPrice=" + settlementPrice +
                 ", uid='" + uid + '\'' +
                 ", payWay='" + payWay + '\'' +
+                ", platform='" + platform + '\'' +
                 ", goodsInfos=" + goodsInfos +
+                ", goodsNum=" + goodsNum +
                 ", registration=" + registration +
                 '}';
     }

@@ -3,6 +3,9 @@ import com.newler.jdweb.config.SpringWebConfig;
 import com.newler.jdweb.dto.OrderInfo;
 import com.newler.jdweb.service.OrderService;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +24,17 @@ public class OrderPoiTest {
     @Autowired
     public OrderService orderService;
     private int colNum = 0;
+    private Workbook workbook = null;
 
     @Test
-    public void createExcel() {
+    public void createExcel() throws IOException {
         System.out.println(orderService.getOrderList());
         try {
             List<OrderInfo> orderInfos = orderService.getOrderList();
             File file = new File("F:\\手机报单.xlsx");
             FileOutputStream fileOutputStream = new FileOutputStream(file);
 
-            Workbook workbook = WorkbookFactory.create(true);
+            workbook = WorkbookFactory.create(true);
             Sheet sheet = workbook.createSheet();
 
             Row headerRow = sheet.createRow(0);
@@ -42,7 +46,6 @@ public class OrderPoiTest {
                 colNum++;
             });
 
-            CellStyle cellContentStyle = createContentStyle(workbook);
             for (int rowNum = 0; rowNum < orderInfos.size(); rowNum++) {
                 Row row = sheet.createRow(rowNum+1);
                 colNum = 0;
@@ -50,8 +53,15 @@ public class OrderPoiTest {
                 ReflectionUtils.doWithFields(OrderInfo.class, field -> {
                     field.setAccessible(true);
                     Cell cell = row.createCell(colNum);
+                    CellStyle cellContentStyle = createContentStyle(workbook);
                     if (field.getName().equals("registration")) {
-                        cell.setCellValue(((boolean)field.get(orderInfo)) ? "是":"否");
+                        if (((boolean)field.get(orderInfo))) {
+                            cell.setCellValue("是");
+                        } else {
+                            cell.setCellValue("否");
+                            cellContentStyle.setFillForegroundColor(IndexedColors.RED.index);
+                            cellContentStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+                        }
                     } else {
                         cell.setCellValue(String.valueOf(field.get(orderInfo)));
                     }
@@ -63,6 +73,10 @@ public class OrderPoiTest {
             workbook.write(fileOutputStream);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (workbook != null) {
+                workbook.close();
+            }
         }
     }
 

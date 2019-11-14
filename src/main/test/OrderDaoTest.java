@@ -18,6 +18,6 @@ public class OrderDaoTest {
 
     @Test
     public void getOrderList() {
-        orderDao.getOrderList().forEach(System.out::println);
+//        orderDao.getOrderList().forEach(System.out::println);
     }
 }

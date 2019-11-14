@@ -30,6 +30,7 @@ public class OrderServiceImpl implements OrderService {
             orderInfo.setSettlementPrice(order.getSettlementPrice());
             orderInfo.setUid(order.getUid());
             orderInfo.setGoodsNum(order.getGoodsInfos().size());
+            orderInfo.setPlatform(order.getPlatform());
             String receiverIverInfo = new StringBuilder("收件人:").append(order.getReceiverName()).append("\n")
                     .append("收件号码").append(order.getReceiverPhone()).append("\n")
                     .append("收件地址").append(order.getReceiverAddress()).append("\n").toString();

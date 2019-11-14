@@ -17,6 +17,6 @@ public class WebApplicationConfig  extends AbstractAnnotationConfigDispatcherSer
 
     @Override
     protected String[] getServletMappings() {
-        return new String[]{"/**"};
+        return new String[]{"/"};
     }
 }
