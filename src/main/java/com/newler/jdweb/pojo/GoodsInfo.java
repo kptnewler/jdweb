@@ -31,13 +31,15 @@ public class GoodsInfo implements Serializable {
     * 
     * isNullAble:1
     */
-    private String price;
+    private float price;
 
     /**
     * 
     * isNullAble:1
     */
     private String goodsUrl;
+
+    private String platform;
 
 
     public void setId(Long id){this.id = id;}
@@ -48,9 +50,9 @@ public class GoodsInfo implements Serializable {
 
     public String getName(){return this.name;}
 
-    public void setPrice(String price){this.price = price;}
+    public void setPrice(float price){this.price = price;}
 
-    public String getPrice(){return this.price;}
+    public float getPrice(){return this.price;}
 
     public void setGoodsUrl(String goodsUrl){this.goodsUrl = goodsUrl;}
 
@@ -65,5 +67,13 @@ public class GoodsInfo implements Serializable {
                 ", price='" + price + '\'' +
                 ", goodsUrl='" + goodsUrl + '\'' +
                 '}';
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
     }
 }

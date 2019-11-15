@@ -4,7 +4,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newler.jdweb.dao.GoodsDao">
     <insert id="addGoods" parameterType="com.newler.jdweb.pojo.GoodsInfo">
-        INSERT IGNORE INTO goodsinfo VALUES (id, name, price, goods_url)
-        <selectKey keyColumn="id" keyProperty="id" resultType="long"/>
+        INSERT IGNORE INTO goodsinfo(id, name, price, goods_url, platform) VALUES(#{id},#{name}, #{price},#{goodsUrl}, #{platform})
     </insert>
+
+    <delete id="deleteGoodsById" parameterType="long">
+        DELETE FROM goodsinfo WHERE id = #{id}
+    </delete>
+
+    <update id="updateGoodsById" parameterType="com.newler.jdweb.pojo.GoodsInfo">
+        UPDATE GoodsInfo SET goods_url = #{goodUrl}, name = #{name}, price = #{price}, platform = #{platfor} WHERE id = #{id}
+    </update>
+
+    <select id="getGoodsInfoListByPlatform" parameterType="string" resultType="com.newler.jdweb.pojo.GoodsInfo">
+        SELECT * FROM goodsinfo WHERE platform = #{platform}
+    </select>
+
+    <select id="getGoodsInfoById" parameterType="long" resultType="com.newler.jdweb.pojo.GoodsInfo">
+        SELECT * FROM goodsinfo WHERE platform = #{id}
+    </select>
+
+    <select id="getGooidInfoListByName" parameterType="string" resultType="com.newler.jdweb.pojo.GoodsInfo">
+        SELECT * FROM goodsinfo WHERE name LIKE #{name}
+    </select>
+
 </mapper>

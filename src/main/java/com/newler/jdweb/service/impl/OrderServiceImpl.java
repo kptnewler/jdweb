@@ -1,6 +1,7 @@
 package com.newler.jdweb.service.impl;
 
 import com.newler.jdweb.dao.OrderDao;
+import com.newler.jdweb.dao.OrderGoodsDao;
 import com.newler.jdweb.dto.OrderInfo;
 import com.newler.jdweb.pojo.Order;
 import com.newler.jdweb.service.OrderService;
@@ -13,7 +14,9 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
     @Autowired
-    public OrderDao orderDao;
+    private OrderDao orderDao;
+    @Autowired
+    private OrderGoodsDao orderGoodsDao;
 
     @Override
     public List<OrderInfo> getOrderList() {
@@ -45,5 +48,10 @@ public class OrderServiceImpl implements OrderService {
             orderInfos.add(orderInfo);
         });
         return orderInfos;
+    }
+
+    @Override
+    public long addOrders(OrderInfo orderInfo) {
+        return 0;
     }
 }

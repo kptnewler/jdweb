@@ -9,7 +9,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @WebAppConfiguration
 @ComponentScan(basePackages = "com.newler.jdweb")
-@EnableWebMvc
+// 测试的时候去掉
+//@EnableWebMvc
 public class SpringWebConfig implements WebMvcConfigurer {
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
@@ -27,6 +28,4 @@ public class SpringWebConfig implements WebMvcConfigurer {
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
-
-
 }

@@ -45,7 +45,9 @@ public class SpringDaoConfig {
         sqlSessionFactoryBean.setDataSource(dataSource);
         sqlSessionFactoryBean.setConfiguration(configuration);
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        sqlSessionFactoryBean.setMapperLocations(resolver.getResource("classpath:/dao/OrderDao.xml"));
+        sqlSessionFactoryBean.setMapperLocations(resolver.getResource("classpath:/dao/OrderDao.xml"),
+                resolver.getResource("classpath:/dao/GoodsDao.xml"),
+                resolver.getResource("classpath:/dao/OrderGoodsDao.xml"));
         return sqlSessionFactoryBean.getObject();
     }
 
