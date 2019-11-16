@@ -50,8 +50,36 @@ public class OrderServiceImpl implements OrderService {
         return orderInfos;
     }
 
+    /**
+     * 1.添加订单
+     * 2.将订单和商品的映射关系保存到订单商品表中
+     */
     @Override
-    public long addOrders(OrderInfo orderInfo) {
+    public int addOrders(OrderInfo orderInfo) {
+        return 0;
+    }
+
+    /**
+     * 删除订单
+     * 删除订单商品表中包含订单id的item
+     */
+    @Override
+    public int deleteOrder(long orderId) {
+        return 0;
+    }
+
+    /**
+     * 更新订单信息，不允许更改订单商品
+     */
+    @Override
+    public int updateOrderInfo(OrderInfo orderInfo) {
+        return 0;
+    }
+
+    /**
+     * 更新订单商品
+     */
+    public int updateOrderGoods(long orderId, long goodsId){
         return 0;
     }
 }

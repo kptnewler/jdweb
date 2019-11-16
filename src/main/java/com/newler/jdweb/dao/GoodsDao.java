@@ -9,11 +9,11 @@ public interface GoodsDao {
 
     int deleteGoodsById(long id);
 
-    int updateGoodsById(long id);
+    int updateGoodsById(GoodsInfo goodsInfo);
 
     List<GoodsInfo> getGoodsInfoListByPlatform(String platform);
 
-    GoodsInfo getGoodsInfoById(String id);
+    GoodsInfo getGoodsInfoById(long id);
 
     List<GoodsInfo> getGooidInfoListByName(String name);
 }

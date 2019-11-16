@@ -4,4 +4,6 @@ import com.newler.jdweb.pojo.GoodsInfo;
 
 public interface GoodsService {
     long addGoods(GoodsInfo goodsInfo);
+
+    long deleteGoods(long goodsId);
 }

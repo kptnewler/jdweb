@@ -15,7 +15,6 @@
         <result property="receiverPhone" column="receiver_phone"/>
         <result property="orderUrl" column="order_url"/>
         <result property="status" column="status"/>
-        <result property="completed" column="completed"/>
         <result property="uid" column="uid"/>
         <result property="registration" column="registration"/>
         <result property="payWay" column="pay_way"/>
@@ -29,14 +28,24 @@
             <result property="name" column="name"/>
         </collection>
     </resultMap>
+
     <select id="getOrderList" resultMap="orderResult" parameterType="int">
         SELECT o.*,g.id AS g_id, g.price AS g_price, g.name AS g_name, g.goods_url AS g_url, og.num AS goods_num
         FROM  orderinfo AS o LEFT JOIN ordergoods AS og ON o.id = og.order_id
         LEFT JOIN goodsinfo AS g ON og.goods_id = g.id WHERE o.receiver_name = '白鹿原';
     </select>
 
-    <insert id="addOrderGoods" parameterType="com.newler.jdweb.pojo.Order">
+    <delete id="deleteOrder" parameterType="long">
+        DELETE FROM orderInfo WHERE id = #{orderId}
+    </delete>
 
+    <insert id="addOrder" parameterType="com.newler.jdweb.pojo.Order">
+        INSERT INTO orderinfo(id, carriage_id, carriage_url, carrier, date, price,
+                              receiver_address, receiver_name, receiver_phone, order_url,
+                              status, uid, pay_way, platform)
+        VALUES (#{id}, #{carriageId}, #{carriageUrl}, #{carrier},
+        #{date}, #{price}, #{receiverAddress}, #{receiverName}, #{receiverPhone}, #{orderUrl},
+        #{status}, #{uid}, #{payWay}, #{platform})
     </insert>
 
 </mapper>

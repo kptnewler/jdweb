@@ -15,4 +15,14 @@ public class GoodsServiceImpl implements GoodsService {
     public long addGoods(GoodsInfo goodsInfo) {
         return goodsDao.addGoods(goodsInfo);
     }
+
+    /**
+     * 删除商品
+     * 订单商品表中的信息
+     * 删除商品相关的订单
+     */
+    @Override
+    public long deleteGoods(long goodsId) {
+        return 0;
+    }
 }

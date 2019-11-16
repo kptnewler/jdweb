@@ -8,5 +8,11 @@ import java.util.List;
 public interface OrderService {
     List<OrderInfo> getOrderList();
 
-    long addOrders(OrderInfo orderInfo);
+    int addOrders(OrderInfo orderInfo);
+
+    int deleteOrder(long orderId);
+
+    int updateOrderInfo(OrderInfo orderInfo);
+
+    int updateOrderGoods(long orderId, long goodsId);
 }

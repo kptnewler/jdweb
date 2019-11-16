@@ -18,4 +18,8 @@
     <delete id="deleteOrderGoods" >
         DELETE FROM ordergoods WHERE order_id = #{orderId} AND goods_id = #{goodsId}
     </delete>
+
+    <update id="updateOrderGoods">
+        UPDATE ordergoods SET goods_id = #{goodsId} WHERE order_id = #{orderId}
+    </update>
 </mapper>

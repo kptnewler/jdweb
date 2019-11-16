@@ -12,7 +12,7 @@
     </delete>
 
     <update id="updateGoodsById" parameterType="com.newler.jdweb.pojo.GoodsInfo">
-        UPDATE GoodsInfo SET goods_url = #{goodUrl}, name = #{name}, price = #{price}, platform = #{platfor} WHERE id = #{id}
+        UPDATE GoodsInfo SET goods_url = #{goodsUrl}, name = #{name}, price = #{price}, platform = #{platform} WHERE id = #{id}
     </update>
 
     <select id="getGoodsInfoListByPlatform" parameterType="string" resultType="com.newler.jdweb.pojo.GoodsInfo">
@@ -20,7 +20,7 @@
     </select>
 
     <select id="getGoodsInfoById" parameterType="long" resultType="com.newler.jdweb.pojo.GoodsInfo">
-        SELECT * FROM goodsinfo WHERE platform = #{id}
+        SELECT * FROM goodsinfo WHERE id = #{id}
     </select>
 
     <select id="getGooidInfoListByName" parameterType="string" resultType="com.newler.jdweb.pojo.GoodsInfo">

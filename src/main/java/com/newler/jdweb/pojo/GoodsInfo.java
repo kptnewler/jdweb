@@ -56,7 +56,6 @@ public class GoodsInfo implements Serializable {
 
     public void setGoodsUrl(String goodsUrl){this.goodsUrl = goodsUrl;}
 
-    public String getGoodsUrl(){return this.goodsUrl;}
 
 
     @Override
@@ -75,5 +74,9 @@ public class GoodsInfo implements Serializable {
 
     public void setPlatform(String platform) {
         this.platform = platform;
+    }
+
+    public String getGoodsUrl() {
+        return goodsUrl;
     }
 }

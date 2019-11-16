@@ -11,4 +11,6 @@ public interface OrderGoodsDao {
     int deleteByGoodsId(long goodsId);
 
     int deleteOrderGoods(@Param("orderId") long orderId, @Param("goodsId") long goodsId);
+
+    int updateOrderGoods(@Param("orderId") long orderId, @Param("goodsId") long goodsId);
 }
