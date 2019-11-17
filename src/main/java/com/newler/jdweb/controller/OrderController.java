@@ -1,16 +1,11 @@
 package com.newler.jdweb.controller;
 
-import com.newler.jdweb.dto.OrderInfo;
-import com.newler.jdweb.dto.Result;
-import com.newler.jdweb.pojo.Order;
+import com.newler.jdweb.data.dto.Result;
+import com.newler.jdweb.data.dojo.Order;
 import com.newler.jdweb.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/order")

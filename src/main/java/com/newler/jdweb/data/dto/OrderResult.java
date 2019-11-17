@@ -1,6 +1,6 @@
-package com.newler.jdweb.dto;
+package com.newler.jdweb.data.dto;
 
-public class OrderInfo {
+public class OrderResult {
     private Long id;
     private String uid;
     private String carriageId;

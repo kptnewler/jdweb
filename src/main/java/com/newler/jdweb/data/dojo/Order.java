@@ -1,4 +1,4 @@
-package com.newler.jdweb.pojo;
+package com.newler.jdweb.data.dojo;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -88,18 +88,9 @@ public class Order implements Serializable {
 
     private String platform;
 
-    private List<GoodsInfo> goodsInfos;
+    private String settleTime;
 
-    private int goodsNum;
-
-
-    public int getGoodsNum() {
-        return goodsNum;
-    }
-
-    public void setGoodsNum(int goodsNum) {
-        this.goodsNum = goodsNum;
-    }
+    private List<OrderGoodsDo> goodsInfos;
 
     /**
      *
@@ -127,11 +118,11 @@ public class Order implements Serializable {
         this.payWay = payWay;
     }
 
-    public List<GoodsInfo> getGoodsInfos() {
+    public List<OrderGoodsDo> getGoodsInfos() {
         return goodsInfos;
     }
 
-    public void setGoodsInfos(List<GoodsInfo> goodsInfos) {
+    public void setGoodsInfos(List<OrderGoodsDo> goodsInfos) {
         this.goodsInfos = goodsInfos;
     }
 
@@ -275,8 +266,15 @@ public class Order implements Serializable {
                 ", payWay='" + payWay + '\'' +
                 ", platform='" + platform + '\'' +
                 ", goodsInfos=" + goodsInfos +
-                ", goodsNum=" + goodsNum +
                 ", registration=" + registration +
                 '}';
+    }
+
+    public String getSettleTime() {
+        return settleTime;
+    }
+
+    public void setSettleTime(String settleTime) {
+        this.settleTime = settleTime;
     }
 }

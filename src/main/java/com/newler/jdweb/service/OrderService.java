@@ -1,18 +1,20 @@
 package com.newler.jdweb.service;
 
-import com.newler.jdweb.dto.OrderInfo;
-import com.newler.jdweb.pojo.Order;
-import org.springframework.stereotype.Service;
+import com.newler.jdweb.data.dto.OrderResult;
+import com.newler.jdweb.data.dto.SearchOrder;
+import com.newler.jdweb.data.dojo.Order;
 
 import java.util.List;
 public interface OrderService {
-    List<OrderInfo> getOrderList();
+    List<OrderResult> getOrderListBySearchParams(SearchOrder searchOrder);
 
-    int addOrders(OrderInfo orderInfo);
+    OrderResult getOrderListByOrderId(long orderId);
+
+    int addOrder(Order order);
 
     int deleteOrder(long orderId);
 
-    int updateOrderInfo(OrderInfo orderInfo);
+    int updateOrder(Order order);
 
     int updateOrderGoods(long orderId, long goodsId);
 }

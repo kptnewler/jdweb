@@ -2,7 +2,7 @@ package com.newler.jdweb.dao;
 
 import com.newler.jdweb.config.SpringDaoConfig;
 import com.newler.jdweb.config.SpringWebConfig;
-import com.newler.jdweb.pojo.OrderGoods;
+import com.newler.jdweb.data.pojo.OrderGoods;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

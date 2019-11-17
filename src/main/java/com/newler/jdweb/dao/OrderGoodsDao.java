@@ -1,6 +1,6 @@
 package com.newler.jdweb.dao;
 
-import com.newler.jdweb.pojo.OrderGoods;
+import com.newler.jdweb.data.pojo.OrderGoods;
 import org.apache.ibatis.annotations.Param;
 
 public interface OrderGoodsDao {

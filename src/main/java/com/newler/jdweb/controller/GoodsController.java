@@ -1,12 +1,11 @@
 package com.newler.jdweb.controller;
 
-import com.newler.jdweb.dto.Result;
-import com.newler.jdweb.pojo.GoodsInfo;
+import com.newler.jdweb.data.dto.Result;
+import com.newler.jdweb.data.pojo.GoodsInfo;
 import com.newler.jdweb.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(path = "/goods")

@@ -11,7 +11,7 @@ public class MybatisConfig {
         org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
         configuration.setLazyLoadingEnabled(true);
         configuration.setMapUnderscoreToCamelCase(true);
-        configuration.getTypeAliasRegistry().registerAliases("com.newler.jdweb.pojo");
+        configuration.getTypeAliasRegistry().registerAliases("com.newler.jdweb.data.pojo");
         return configuration;
     }
 }

@@ -1,11 +1,9 @@
 import com.newler.jdweb.config.SpringDaoConfig;
 import com.newler.jdweb.config.SpringWebConfig;
-import com.newler.jdweb.dto.OrderInfo;
+import com.newler.jdweb.data.dto.OrderResult;
+import com.newler.jdweb.data.dto.SearchOrder;
 import com.newler.jdweb.service.OrderService;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,17 +26,21 @@ public class OrderPoiTest {
 
     @Test
     public void createExcel() throws IOException {
-        System.out.println(orderService.getOrderList());
+        String platform = "苏宁";
         try {
-            List<OrderInfo> orderInfos = orderService.getOrderList();
-            File file = new File("F:\\手机报单.xlsx");
+            SearchOrder searchOrder = new SearchOrder();
+            searchOrder.setPlatform(platform);
+            searchOrder.setReceiveAddr("%浙江省杭州市%");
+            List<OrderResult> orderResults = orderService.getOrderListBySearchParams(searchOrder);
+//            File file = new File("E:\\京东手机报单.xlsx");
+            File file = new File("E:\\"+platform+"手机报单.xlsx");
             FileOutputStream fileOutputStream = new FileOutputStream(file);
 
             workbook = WorkbookFactory.create(true);
             Sheet sheet = workbook.createSheet();
 
             Row headerRow = sheet.createRow(0);
-            ReflectionUtils.doWithFields(OrderInfo.class, field -> {
+            ReflectionUtils.doWithFields(OrderResult.class, field -> {
                 field.setAccessible(true);
                 Cell cell = headerRow.createCell(colNum);
                 cell.setCellValue(field.getName());
@@ -46,16 +48,16 @@ public class OrderPoiTest {
                 colNum++;
             });
 
-            for (int rowNum = 0; rowNum < orderInfos.size(); rowNum++) {
+            for (int rowNum = 0; rowNum < orderResults.size(); rowNum++) {
                 Row row = sheet.createRow(rowNum+1);
                 colNum = 0;
-                OrderInfo orderInfo = orderInfos.get(rowNum);
-                ReflectionUtils.doWithFields(OrderInfo.class, field -> {
+                OrderResult orderResult = orderResults.get(rowNum);
+                ReflectionUtils.doWithFields(OrderResult.class, field -> {
                     field.setAccessible(true);
                     Cell cell = row.createCell(colNum);
                     CellStyle cellContentStyle = createContentStyle(workbook);
                     if (field.getName().equals("registration")) {
-                        if (((boolean)field.get(orderInfo))) {
+                        if (((boolean)field.get(orderResult))) {
                             cell.setCellValue("是");
                         } else {
                             cell.setCellValue("否");
@@ -63,7 +65,7 @@ public class OrderPoiTest {
                             cellContentStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
                         }
                     } else {
-                        cell.setCellValue(String.valueOf(field.get(orderInfo)));
+                        cell.setCellValue(String.valueOf(field.get(orderResult)));
                     }
                     cell.setCellStyle(cellContentStyle);
                     sheet.autoSizeColumn(colNum);

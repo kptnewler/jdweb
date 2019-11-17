@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newler.jdweb.dao.OrderGoodsDao">
-    <insert id="addOrderGoods" parameterType="com.newler.jdweb.pojo.OrderGoods">
+    <insert id="addOrderGoods" parameterType="com.newler.jdweb.data.pojo.OrderGoods">
         INSERT INTO ordergoods(order_id, goods_id, num) VALUES (#{orderId}, #{goodsId}, #{num})
     </insert>
 

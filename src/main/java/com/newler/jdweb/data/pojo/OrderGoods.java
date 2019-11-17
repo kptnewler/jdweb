@@ -1,10 +1,7 @@
-package com.newler.jdweb.pojo;
+package com.newler.jdweb.data.pojo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
+
 /**
 *
 *  @author author

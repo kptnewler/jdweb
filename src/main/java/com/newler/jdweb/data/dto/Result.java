@@ -1,4 +1,4 @@
-package com.newler.jdweb.dto;
+package com.newler.jdweb.data.dto;
 
 /**
  * 封装json对象，所有返回结果都使用它

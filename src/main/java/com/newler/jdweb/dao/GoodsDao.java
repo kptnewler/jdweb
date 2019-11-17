@@ -1,6 +1,6 @@
 package com.newler.jdweb.dao;
 
-import com.newler.jdweb.pojo.GoodsInfo;
+import com.newler.jdweb.data.pojo.GoodsInfo;
 
 import java.util.List;
 

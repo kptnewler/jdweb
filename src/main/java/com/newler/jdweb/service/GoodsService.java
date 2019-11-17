@@ -1,9 +1,9 @@
 package com.newler.jdweb.service;
 
-import com.newler.jdweb.pojo.GoodsInfo;
+import com.newler.jdweb.data.pojo.GoodsInfo;
 
 public interface GoodsService {
-    long addGoods(GoodsInfo goodsInfo);
+    int addGoods(GoodsInfo goodsInfo);
 
-    long deleteGoods(long goodsId);
+    int deleteGoods(long goodsId);
 }

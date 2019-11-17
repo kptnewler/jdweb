@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newler.jdweb.dao.OrderDao">
-    <resultMap id="orderResult" type="com.newler.jdweb.pojo.Order">
+    <resultMap id="orderResult" type="com.newler.jdweb.data.dojo.Order">
         <id property="id" column="id"/>
         <result property="carriageId" column="carriage_id"/>
         <result property="carriageUrl" column="carriage_url"/>
@@ -18,34 +18,99 @@
         <result property="uid" column="uid"/>
         <result property="registration" column="registration"/>
         <result property="payWay" column="pay_way"/>
-        <result property="goodsNum" column="goods_num"/>
         <result property="platform" column="platform"/>
 
-        <collection property="goodsInfos" javaType="ArrayList" ofType="com.newler.jdweb.pojo.GoodsInfo" columnPrefix="g_">
+        <collection property="goodsInfos" javaType="ArrayList" ofType="com.newler.jdweb.data.dojo.OrderGoodsDo"
+                    columnPrefix="g_">
             <id column="id" property="id"/>
             <result property="goodsUrl" column="url"/>
             <result property="price" column="price"/>
             <result property="name" column="name"/>
+            <result property="goodsNum" column="num"/>
         </collection>
     </resultMap>
 
-    <select id="getOrderList" resultMap="orderResult" parameterType="int">
-        SELECT o.*,g.id AS g_id, g.price AS g_price, g.name AS g_name, g.goods_url AS g_url, og.num AS goods_num
-        FROM  orderinfo AS o LEFT JOIN ordergoods AS og ON o.id = og.order_id
-        LEFT JOIN goodsinfo AS g ON og.goods_id = g.id WHERE o.receiver_name = '白鹿原';
+    <sql id="selectOrder">
+        SELECT
+            o.*,
+            g.id AS g_id,
+            g.price AS g_price,
+            g.NAME AS g_name,
+            g.goods_url AS g_url,
+            og.num AS g_num
+        FROM
+            orderinfo AS o
+            LEFT JOIN ordergoods AS og ON o.id = og.order_id
+            LEFT JOIN goodsinfo AS g ON og.goods_id = g.id
+    </sql>
+
+
+    <select id="getOrderListByOrderId" resultMap="orderResult">
+        <include refid="selectOrder"/>
+        WHERE o.id = #{orderId};
     </select>
 
+    <select id="getOrderListBySearchParams" resultMap="orderResult" parameterType="com.newler.jdweb.data.dto.SearchOrder">
+        <include refid="selectOrder"/>
+        <if test="searchOrder != null">
+            WHERE 1=1
+            <choose>
+                <when test="searchOrder.receiveName != null">
+                    AND o.receiver_name LIKE #{searchOrder.receiveName}
+                </when>
+                <when test="searchOrder.receiveAddr != null">
+                    AND o.receiver_address LIKE #{searchOrder.receiveAddr}
+                </when>
+                <when test="searchOrder.startDate != null">
+                    AND o.date &gt;= #{searchOrder.startDate}
+                </when>
+                <when test="searchOrder.endDate != null">
+                    AND o.date &gt;= #{searchOrder.endDate}
+                </when>
+                <when test="searchOrder.goodsName != null">
+                    AND g.name LIKE #{searchOrder.goodsName}
+                </when>
+                <when test="searchOrder.platform != null">
+                    AND g.platform = #{searchOrder.platform}
+                </when>
+            </choose>
+        </if>
+    </select>
+
+
     <delete id="deleteOrder" parameterType="long">
-        DELETE FROM orderInfo WHERE id = #{orderId}
+        DELETE
+        FROM orderResult
+        WHERE id = #{orderId}
     </delete>
 
-    <insert id="addOrder" parameterType="com.newler.jdweb.pojo.Order">
+    <insert id="addOrder" parameterType="com.newler.jdweb.data.dojo.Order">
         INSERT INTO orderinfo(id, carriage_id, carriage_url, carrier, date, price,
                               receiver_address, receiver_name, receiver_phone, order_url,
-                              status, uid, pay_way, platform)
+                              status, uid, pay_way, platform, settle_time, settlement_price)
         VALUES (#{id}, #{carriageId}, #{carriageUrl}, #{carrier},
-        #{date}, #{price}, #{receiverAddress}, #{receiverName}, #{receiverPhone}, #{orderUrl},
-        #{status}, #{uid}, #{payWay}, #{platform})
+                #{date}, #{price}, #{receiverAddress}, #{receiverName}, #{receiverPhone}, #{orderUrl},
+                #{status}, #{uid}, #{payWay}, #{platform}, #{settleTime}, #{settlementPrice})
     </insert>
+
+    <update id="updateOrder">
+        UPDATE orderinfo
+        SET carriage_id     = #{carriageId},
+            carriage_url= #{carriageUrl},
+            carrier= #{carrier},
+            date= #{date},
+            price= #{price},
+            receiver_address= #{receiverAddress},
+            receiver_name= #{receiverName},
+            receiver_phone= #{receiverPhone},
+            order_url= #{orderUrl},
+            status= #{status},
+            uid= #{uid},
+            pay_way= #{payWay},
+            platform= #{platform},
+            settle_time= #{settleTime},
+            settlement_price= #{settlementPrice}
+        WHERE id = #{id}
+    </update>
 
 </mapper>
