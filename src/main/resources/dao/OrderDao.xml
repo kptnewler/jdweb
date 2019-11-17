@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newler.jdweb.dao.OrderDao">
-    <resultMap id="orderResult" type="com.newler.jdweb.data.dojo.Order">
+    <resultMap id="orderInfoExcel" type="com.newler.jdweb.DO.OrderInfoDo">
         <id property="id" column="id"/>
         <result property="carriageId" column="carriage_id"/>
         <result property="carriageUrl" column="carriage_url"/>
@@ -20,7 +20,7 @@
         <result property="payWay" column="pay_way"/>
         <result property="platform" column="platform"/>
 
-        <collection property="goodsInfos" javaType="ArrayList" ofType="com.newler.jdweb.data.dojo.OrderGoodsDo"
+        <collection property="goodsInfoDOS" javaType="ArrayList" ofType="com.newler.jdweb.data.dojo.OrderGoodsDoDO"
                     columnPrefix="g_">
             <id column="id" property="id"/>
             <result property="goodsUrl" column="url"/>
@@ -45,12 +45,12 @@
     </sql>
 
 
-    <select id="getOrderListByOrderId" resultMap="orderResult">
+    <select id="getOrderListByOrderId" resultMap="orderInfoExcel">
         <include refid="selectOrder"/>
         WHERE o.id = #{orderId};
     </select>
 
-    <select id="getOrderListBySearchParams" resultMap="orderResult" parameterType="com.newler.jdweb.data.dto.SearchOrder">
+    <select id="getOrderListBySearchParams" resultMap="orderInfoExcel" parameterType="com.newler.jdweb.dto.SearchOrder">
         <include refid="selectOrder"/>
         <if test="searchOrder != null">
             WHERE 1=1
@@ -80,11 +80,11 @@
 
     <delete id="deleteOrder" parameterType="long">
         DELETE
-        FROM orderResult
+        FROM orderInfoExcel
         WHERE id = #{orderId}
     </delete>
 
-    <insert id="addOrder" parameterType="com.newler.jdweb.data.dojo.Order">
+    <insert id="addOrder" parameterType="com.newler.jdweb.DO.OrderInfoDo">
         INSERT INTO orderinfo(id, carriage_id, carriage_url, carrier, date, price,
                               receiver_address, receiver_name, receiver_phone, order_url,
                               status, uid, pay_way, platform, settle_time, settlement_price)

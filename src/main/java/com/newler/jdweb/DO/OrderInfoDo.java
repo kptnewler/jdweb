@@ -1,10 +1,13 @@
-package com.newler.jdweb.data.dojo;
+package com.newler.jdweb.DO;
 
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
-public class Order implements Serializable {
+/**
+ * 商品信息表
+ */
+public class OrderInfoDo implements Serializable {
     /**
      * 主键
      *
@@ -90,7 +93,7 @@ public class Order implements Serializable {
 
     private String settleTime;
 
-    private List<OrderGoodsDo> goodsInfos;
+    private List<OrderGoodsDO> goodsInfos;
 
     /**
      *
@@ -118,13 +121,7 @@ public class Order implements Serializable {
         this.payWay = payWay;
     }
 
-    public List<OrderGoodsDo> getGoodsInfos() {
-        return goodsInfos;
-    }
 
-    public void setGoodsInfos(List<OrderGoodsDo> goodsInfos) {
-        this.goodsInfos = goodsInfos;
-    }
 
 
     public Long getId() {
@@ -276,5 +273,13 @@ public class Order implements Serializable {
 
     public void setSettleTime(String settleTime) {
         this.settleTime = settleTime;
+    }
+
+    public List<OrderGoodsDO> getGoodsInfos() {
+        return goodsInfos;
+    }
+
+    public void setGoodsInfos(List<OrderGoodsDO> goodsInfos) {
+        this.goodsInfos = goodsInfos;
     }
 }

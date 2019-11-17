@@ -1,7 +1,7 @@
 package com.newler.jdweb.service.impl;
 
+import com.newler.jdweb.DO.GoodsInfoDO;
 import com.newler.jdweb.dao.GoodsDao;
-import com.newler.jdweb.data.pojo.GoodsInfo;
 import com.newler.jdweb.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,8 +12,8 @@ public class GoodsServiceImpl implements GoodsService {
     private GoodsDao goodsDao;
 
     @Override
-    public int addGoods(GoodsInfo goodsInfo) {
-        return goodsDao.addGoods(goodsInfo);
+    public int addGoods(GoodsInfoDO goodsInfoDO) {
+        return goodsDao.addGoods(goodsInfoDO);
     }
 
     /**

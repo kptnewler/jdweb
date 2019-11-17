@@ -2,7 +2,7 @@ package com.newler.jdweb.dao;
 
 import com.newler.jdweb.config.SpringDaoConfig;
 import com.newler.jdweb.config.SpringWebConfig;
-import com.newler.jdweb.data.pojo.OrderGoods;
+import com.newler.jdweb.DO.OrderGoodsDO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,14 +12,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {SpringDaoConfig.class, SpringWebConfig.class})
-public class OrderGoodsDaoTest {
+public class OrderInfoTest {
     @Autowired
     private OrderGoodsDao orderGoodsDao;
 
     @Test
     public void addOrderGoods() {
-        OrderGoods orderGoods = new OrderGoods();
-        orderGoods.setGoodsId(100002019841L);
+        OrderGoodsDO orderGoods = new OrderGoodsDO();
+        orderGoods.setId(100002019841L);
         orderGoods.setOrderId(105717213931L);
         orderGoods.setNum(1);
         int num = orderGoodsDao.addOrderGoods(orderGoods);

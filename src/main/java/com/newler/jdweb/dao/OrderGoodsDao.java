@@ -1,10 +1,10 @@
 package com.newler.jdweb.dao;
 
-import com.newler.jdweb.data.pojo.OrderGoods;
+import com.newler.jdweb.DO.OrderGoodsDO;
 import org.apache.ibatis.annotations.Param;
 
 public interface OrderGoodsDao {
-    int addOrderGoods(OrderGoods orderGoods);
+    int addOrderGoods(OrderGoodsDO orderGoodsDO);
 
     int deleteByOrderId(long orderId);
 

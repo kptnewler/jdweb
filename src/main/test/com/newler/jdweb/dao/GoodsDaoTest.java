@@ -2,7 +2,7 @@ package com.newler.jdweb.dao;
 
 import com.newler.jdweb.config.SpringDaoConfig;
 import com.newler.jdweb.config.SpringWebConfig;
-import com.newler.jdweb.data.pojo.GoodsInfo;
+import com.newler.jdweb.DO.GoodsInfoDO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,13 +20,13 @@ public class GoodsDaoTest {
 
     @Test
     public void addGoods() {
-        GoodsInfo goodsInfo = new GoodsInfo();
-        goodsInfo.setId(123242141L);
-        goodsInfo.setGoodsUrl("02165");
-        goodsInfo.setName("1111");
-        goodsInfo.setPlatform("苏宁");
-        goodsInfo.setPrice(12);
-        int num = goodsDao.addGoods(goodsInfo);
+        GoodsInfoDO goodsInfoDO = new GoodsInfoDO();
+        goodsInfoDO.setId(123242141L);
+        goodsInfoDO.setGoodsUrl("02165");
+        goodsInfoDO.setName("1111");
+        goodsInfoDO.setPlatform("苏宁");
+        goodsInfoDO.setPrice(12);
+        int num = goodsDao.addGoods(goodsInfoDO);
         Assert.assertEquals(1, num);
     }
 
@@ -38,32 +38,32 @@ public class GoodsDaoTest {
 
     @Test
     public void updateGoodsById() {
-        GoodsInfo goodsInfo = new GoodsInfo();
-        goodsInfo.setId(123242141L);
-        goodsInfo.setGoodsUrl("02165");
-        goodsInfo.setName("1111");
-        goodsInfo.setPlatform("苏宁");
-        goodsInfo.setPrice(1);
-        int num = goodsDao.updateGoodsById(goodsInfo);
+        GoodsInfoDO goodsInfoDO = new GoodsInfoDO();
+        goodsInfoDO.setId(123242141L);
+        goodsInfoDO.setGoodsUrl("02165");
+        goodsInfoDO.setName("1111");
+        goodsInfoDO.setPlatform("苏宁");
+        goodsInfoDO.setPrice(1);
+        int num = goodsDao.updateGoodsById(goodsInfoDO);
         Assert.assertEquals(1, num);
     }
 
     @Test
     public void getGoodsInfoListByPlatform() {
-        List<GoodsInfo> goodsInfos = goodsDao.getGoodsInfoListByPlatform("京东");
-        Assert.assertNotNull(goodsInfos);
+        List<GoodsInfoDO> goodsInfoDOS = goodsDao.getGoodsInfoListByPlatform("京东");
+        Assert.assertNotNull(goodsInfoDOS);
     }
 
     @Test
     public void getGoodsInfoById() {
-        GoodsInfo goodsInfo = goodsDao.getGoodsInfoById(1241849);
-        Assert.assertNotNull(goodsInfo);
+        GoodsInfoDO goodsInfoDO = goodsDao.getGoodsInfoById(1241849);
+        Assert.assertNotNull(goodsInfoDO);
     }
 
     @Test
     public void getGoodsInfoListByName() {
-        List<GoodsInfo> goodsInfos = goodsDao.getGooidInfoListByName("%小米%");
-        Assert.assertNotNull(goodsInfos);
-        Assert.assertEquals(goodsInfos.size(), 8);
+        List<GoodsInfoDO> goodsInfoDOS = goodsDao.getGooidInfoListByName("%小米%");
+        Assert.assertNotNull(goodsInfoDOS);
+        Assert.assertEquals(goodsInfoDOS.size(), 8);
     }
 }

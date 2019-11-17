@@ -1,20 +1,20 @@
 package com.newler.jdweb.service;
 
-import com.newler.jdweb.data.dto.OrderResult;
-import com.newler.jdweb.data.dto.SearchOrder;
-import com.newler.jdweb.data.dojo.Order;
+import com.newler.jdweb.poi.OrderExcelItem;
+import com.newler.jdweb.dto.SearchOrder;
+import com.newler.jdweb.DO.OrderInfoDo;
 
 import java.util.List;
 public interface OrderService {
-    List<OrderResult> getOrderListBySearchParams(SearchOrder searchOrder);
+    List<OrderExcelItem> getOrderListBySearchParams(SearchOrder searchOrder);
 
-    OrderResult getOrderListByOrderId(long orderId);
+    OrderExcelItem getOrderListByOrderId(long orderId);
 
-    int addOrder(Order order);
+    int addOrder(OrderInfoDo order);
 
     int deleteOrder(long orderId);
 
-    int updateOrder(Order order);
+    int updateOrder(OrderInfoDo order);
 
     int updateOrderGoods(long orderId, long goodsId);
 }

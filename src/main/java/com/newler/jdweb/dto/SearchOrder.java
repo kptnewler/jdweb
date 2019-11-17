@@ -1,4 +1,4 @@
-package com.newler.jdweb.data.dto;
+package com.newler.jdweb.dto;
 
 import java.sql.Date;
 

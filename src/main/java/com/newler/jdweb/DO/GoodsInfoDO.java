@@ -1,12 +1,12 @@
-package com.newler.jdweb.data.pojo;
+package com.newler.jdweb.DO;
 
 import java.io.Serializable;
 
 /**
 *
-*  @author author
+*  商品信息实体类
 */
-public class GoodsInfo implements Serializable {
+public class GoodsInfoDO implements Serializable {
 
     private static final long serialVersionUID = 1573549362489L;
 

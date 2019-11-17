@@ -1,19 +1,19 @@
 package com.newler.jdweb.dao;
 
-import com.newler.jdweb.data.pojo.GoodsInfo;
+import com.newler.jdweb.DO.GoodsInfoDO;
 
 import java.util.List;
 
 public interface GoodsDao {
-    int addGoods(GoodsInfo goodsInfo);
+    int addGoods(GoodsInfoDO goodsInfoDO);
 
     int deleteGoodsById(long id);
 
-    int updateGoodsById(GoodsInfo goodsInfo);
+    int updateGoodsById(GoodsInfoDO goodsInfoDO);
 
-    List<GoodsInfo> getGoodsInfoListByPlatform(String platform);
+    List<GoodsInfoDO> getGoodsInfoListByPlatform(String platform);
 
-    GoodsInfo getGoodsInfoById(long id);
+    GoodsInfoDO getGoodsInfoById(long id);
 
-    List<GoodsInfo> getGooidInfoListByName(String name);
+    List<GoodsInfoDO> getGooidInfoListByName(String name);
 }

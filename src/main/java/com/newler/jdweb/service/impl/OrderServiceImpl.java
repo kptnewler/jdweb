@@ -1,11 +1,10 @@
 package com.newler.jdweb.service.impl;
 
+import com.newler.jdweb.poi.OrderExcelItem;
 import com.newler.jdweb.dao.OrderDao;
 import com.newler.jdweb.dao.OrderGoodsDao;
-import com.newler.jdweb.data.dto.OrderResult;
-import com.newler.jdweb.data.dto.SearchOrder;
-import com.newler.jdweb.data.dto.convert.OrderConvert;
-import com.newler.jdweb.data.dojo.Order;
+import com.newler.jdweb.dto.SearchOrder;
+import com.newler.jdweb.DO.OrderInfoDo;
 import com.newler.jdweb.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,23 +23,19 @@ public class OrderServiceImpl implements OrderService {
      * 根据复合查询条件，搜索
      */
     @Override
-    public List<OrderResult> getOrderListBySearchParams(SearchOrder searchOrder) {
-        List<Order> orders = orderDao.getOrderListBySearchParams(searchOrder);
-        List<OrderResult> orderResults = new ArrayList<>();
-        orders.forEach(order -> {
-            OrderResult orderResult = OrderConvert.convert(order);
-            orderResults.add(orderResult);
-        });
-        return orderResults;
+    public List<OrderExcelItem> getOrderListBySearchParams(SearchOrder searchOrder) {
+        List<OrderInfoDo> orders = orderDao.getOrderListBySearchParams(searchOrder);
+
+        return null;
     }
 
     /**
      * 根据订单ID搜索
      */
     @Override
-    public OrderResult getOrderListByOrderId(long orderId) {
-        Order order = orderDao.getOrderListByOrderId(orderId);
-        return OrderConvert.convert(order);
+    public OrderExcelItem getOrderListByOrderId(long orderId) {
+        OrderInfoDo order = orderDao.getOrderListByOrderId(orderId);
+        return  null;
     }
 
     /**
@@ -48,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
      * 2.将订单和商品的映射关系保存到订单商品表中
      */
     @Override
-    public int addOrder(Order order) {
+    public int addOrder(OrderInfoDo order) {
         int orderNum = orderDao.addOrder(order);
 
 
@@ -68,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
      * 更新订单信息，不允许更改订单商品
      */
     @Override
-    public int updateOrder(Order order) {
+    public int updateOrder(OrderInfoDo order) {
         return 0;
     }
 

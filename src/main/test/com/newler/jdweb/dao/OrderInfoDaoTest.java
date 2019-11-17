@@ -2,8 +2,8 @@ package com.newler.jdweb.dao;
 
 import com.newler.jdweb.config.SpringDaoConfig;
 import com.newler.jdweb.config.SpringWebConfig;
-import com.newler.jdweb.data.dto.SearchOrder;
-import com.newler.jdweb.data.dojo.Order;
+import com.newler.jdweb.dto.SearchOrder;
+import com.newler.jdweb.DO.OrderInfoDo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,13 +15,13 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {SpringDaoConfig.class, SpringWebConfig.class})
-public class OrderDaoTest {
+public class OrderInfoDaoTest {
     @Autowired
     public OrderDao orderDao;
 
     @Test
     public void getOrderListByOrderId() {
-        Order order = orderDao.getOrderListByOrderId(106050028743L);
+        OrderInfoDo order = orderDao.getOrderListByOrderId(106050028743L);
         Assert.assertNotNull(order);
         Assert.assertNotNull(order.getGoodsInfos());
         Assert.assertEquals(order.getGoodsInfos().size(), 2);
@@ -30,19 +30,19 @@ public class OrderDaoTest {
     @Test
     public void getOrderListBySearchParams() {
         SearchOrder searchOrder = null;
-        List<Order> ordersAll = orderDao.getOrderListBySearchParams(searchOrder);
+        List<OrderInfoDo> ordersAll = orderDao.getOrderListBySearchParams(searchOrder);
         Assert.assertNotNull(ordersAll);
         Assert.assertTrue(ordersAll.size() > 10);
 
         searchOrder = new SearchOrder();
         searchOrder.setGoodsName("%Redmi Note7%");
-        List<Order> ordersByGoodsName = orderDao.getOrderListBySearchParams(searchOrder);
+        List<OrderInfoDo> ordersByGoodsName = orderDao.getOrderListBySearchParams(searchOrder);
         Assert.assertNotNull(ordersByGoodsName);
         Assert.assertEquals(ordersByGoodsName.size(), 9);
 
         searchOrder = new SearchOrder();
         searchOrder.setPlatform("苏宁");
-        List<Order> ordersByPlatform = orderDao.getOrderListBySearchParams(searchOrder);
+        List<OrderInfoDo> ordersByPlatform = orderDao.getOrderListBySearchParams(searchOrder);
         Assert.assertNotNull(ordersByPlatform);
         Assert.assertEquals(ordersByPlatform.size(), 13);
     }

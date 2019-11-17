@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newler.jdweb.dao.GoodsDao">
-    <insert id="addGoods" parameterType="com.newler.jdweb.data.pojo.GoodsInfo">
+    <insert id="addGoods" parameterType="com.newler.jdweb.DO.GoodsInfoDO">
         INSERT IGNORE INTO goodsinfo(id, name, price, goods_url, platform) VALUES(#{id},#{name}, #{price},#{goodsUrl}, #{platform})
     </insert>
 
@@ -11,19 +11,19 @@
         DELETE FROM goodsinfo WHERE id = #{id}
     </delete>
 
-    <update id="updateGoodsById" parameterType="com.newler.jdweb.data.pojo.GoodsInfo">
+    <update id="updateGoodsById" parameterType="com.newler.jdweb.DO.GoodsInfoDO">
         UPDATE GoodsInfo SET goods_url = #{goodsUrl}, name = #{name}, price = #{price}, platform = #{platform} WHERE id = #{id}
     </update>
 
-    <select id="getGoodsInfoListByPlatform" parameterType="string" resultType="com.newler.jdweb.data.pojo.GoodsInfo">
+    <select id="getGoodsInfoListByPlatform" parameterType="string" resultType="com.newler.jdweb.DO.GoodsInfoDO">
         SELECT * FROM goodsinfo WHERE platform = #{platform}
     </select>
 
-    <select id="getGoodsInfoById" parameterType="long" resultType="com.newler.jdweb.data.pojo.GoodsInfo">
+    <select id="getGoodsInfoById" parameterType="long" resultType="com.newler.jdweb.DO.GoodsInfoDO">
         SELECT * FROM goodsinfo WHERE id = #{id}
     </select>
 
-    <select id="getGooidInfoListByName" parameterType="string" resultType="com.newler.jdweb.data.pojo.GoodsInfo">
+    <select id="getGooidInfoListByName" parameterType="string" resultType="com.newler.jdweb.DO.GoodsInfoDO">
         SELECT * FROM goodsinfo WHERE name LIKE #{name}
     </select>
 

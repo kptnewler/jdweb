@@ -1,6 +1,13 @@
-package com.newler.jdweb.data.dto;
+package com.newler.jdweb.poi;
 
-public class OrderResult {
+import com.newler.jdweb.DO.OrderGoodsDO;
+
+import java.util.List;
+
+/**
+ * 订单信息类
+ */
+public class OrderExcelItem {
     private Long id;
     private String uid;
     private String carriageId;

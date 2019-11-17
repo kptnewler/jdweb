@@ -1,22 +1,22 @@
 package com.newler.jdweb.dao;
 
-import com.newler.jdweb.data.dto.OrderResult;
-import com.newler.jdweb.data.dto.SearchOrder;
-import com.newler.jdweb.data.dojo.Order;
+import com.newler.jdweb.poi.OrderExcelItem;
+import com.newler.jdweb.dto.SearchOrder;
+import com.newler.jdweb.DO.OrderInfoDo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface OrderDao {
 
-    Order getOrderListByOrderId(long orderId);
+    OrderInfoDo getOrderListByOrderId(long orderId);
 
-    List<Order> getOrderListBySearchParams(@Param("searchOrder") SearchOrder searchOrder);
+    List<OrderInfoDo> getOrderListBySearchParams(@Param("searchOrder") SearchOrder searchOrder);
 
-    int addOrder(Order order);
+    int addOrder(OrderInfoDo order);
 
     int deleteOrder(long orderId);
 
-    int updateOrder(OrderResult orderResult);
+    int updateOrder(OrderExcelItem orderInfoExcel);
 
 }

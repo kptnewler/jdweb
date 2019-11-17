@@ -1,7 +1,7 @@
 package com.newler.jdweb.controller;
 
-import com.newler.jdweb.data.dto.Result;
-import com.newler.jdweb.data.pojo.GoodsInfo;
+import com.newler.jdweb.dto.Result;
+import com.newler.jdweb.DO.GoodsInfoDO;
 import com.newler.jdweb.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,7 @@ public class GoodsController {
 
     @PostMapping(path = "/summit")
     @ResponseBody
-    public Result<String> summitGoods(GoodsInfo goodsInfo) {
+    public Result<String> summitGoods(GoodsInfoDO goodsInfoDO) {
         Result<String> result = new Result<>("提交成功");
         result.setSuccess(true);
         return result;

@@ -1,7 +1,7 @@
 package com.newler.jdweb.controller;
 
-import com.newler.jdweb.data.dto.Result;
-import com.newler.jdweb.data.dojo.Order;
+import com.newler.jdweb.dto.Result;
+import com.newler.jdweb.DO.OrderInfoDo;
 import com.newler.jdweb.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ public class OrderController {
 
     @PostMapping(path = "/summit")
     @ResponseBody
-    public Result<String> summitOrder(Order order) {
+    public Result<String> summitOrder(OrderInfoDo order) {
         Result<String> result = new Result<>("提交成功");
         result.setSuccess(true);
         return result;
