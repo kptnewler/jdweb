@@ -2,13 +2,16 @@ package com.newler.jdweb.dto;
 
 import java.sql.Date;
 
-public class SearchOrder {
+public class SearchOrderParams {
     private String receiveName;
     private String receiveAddr;
     private Date startDate;
     private Date endDate;
     private String goodsName;
     private String platform;
+    private Float settlePrice;
+    private Boolean registration;
+    private String uid;
 
     public String getReceiveName() {
         return receiveName;
@@ -56,5 +59,29 @@ public class SearchOrder {
 
     public void setPlatform(String platForm) {
         this.platform = platForm;
+    }
+
+    public Float getSettlePrice() {
+        return settlePrice;
+    }
+
+    public void setSettlePrice(Float settlePrice) {
+        this.settlePrice = settlePrice;
+    }
+
+    public Boolean getRegistration() {
+        return registration;
+    }
+
+    public void setRegistration(Boolean registration) {
+        this.registration = registration;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

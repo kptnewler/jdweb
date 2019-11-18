@@ -3,6 +3,9 @@ package com.newler.jdweb.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
+
 public class WebApplicationConfig  extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
@@ -19,4 +22,5 @@ public class WebApplicationConfig  extends AbstractAnnotationConfigDispatcherSer
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
+
 }

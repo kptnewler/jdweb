@@ -101,6 +101,30 @@ public class OrderInfoDo implements Serializable {
      */
     private boolean registration;
 
+    public OrderInfoDo(Long id, String carriageId, String carriageUrl, String carrier, Date date, Float price, String receiverAddress, String receiverName, String receiverPhone, String orderUrl, String status, float settlementPrice, String uid, String payWay, String platform, String settleTime, List<OrderGoodsDO> goodsInfos, boolean registration) {
+        this.id = id;
+        this.carriageId = carriageId;
+        this.carriageUrl = carriageUrl;
+        this.carrier = carrier;
+        this.date = date;
+        this.price = price;
+        this.receiverAddress = receiverAddress;
+        this.receiverName = receiverName;
+        this.receiverPhone = receiverPhone;
+        this.orderUrl = orderUrl;
+        this.status = status;
+        this.settlementPrice = settlementPrice;
+        this.uid = uid;
+        this.payWay = payWay;
+        this.platform = platform;
+        this.settleTime = settleTime;
+        this.goodsInfos = goodsInfos;
+        this.registration = registration;
+    }
+
+    public OrderInfoDo() {
+    }
+
     public float getSettlementPrice() {
         return settlementPrice;
     }

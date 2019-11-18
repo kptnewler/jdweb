@@ -1,7 +1,9 @@
 package com.newler.jdweb.poi;
 
 import com.newler.jdweb.DO.OrderInfoDo;
-import com.newler.jdweb.dto.SearchOrder;
+import com.newler.jdweb.dto.OrderItemDTO;
+import com.newler.jdweb.dto.SearchOrderParams;
+import com.newler.jdweb.dto.convert.OrderConvert;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.util.ReflectionUtils;
 
@@ -9,20 +11,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class OrderPoi {
     private int colNum = 0;
     private Workbook workbook = null;
 
-    public void createExcel(List<OrderInfoDo> orderInfoList) throws IOException {
+    public void createExcel(List<OrderItemDTO> orderItemDTOList) throws IOException {
         String platform = "苏宁";
         try {
-            SearchOrder searchOrder = new SearchOrder();
-            searchOrder.setPlatform(platform);
-            searchOrder.setReceiveAddr("%浙江省杭州市%");
-            List<OrderExcelItem> orderInfoExcels = orderInfoList.stream().map(this::convert).collect(Collectors.toList());
 //            File file = new File("E:\\京东手机报单.xlsx");
             File file = new File("E:\\"+platform+"手机报单.xlsx");
             FileOutputStream fileOutputStream = new FileOutputStream(file);
@@ -31,7 +28,7 @@ public class OrderPoi {
             Sheet sheet = workbook.createSheet();
 
             Row headerRow = sheet.createRow(0);
-            ReflectionUtils.doWithFields(OrderExcelItem.class, field -> {
+            ReflectionUtils.doWithFields(OrderItemDTO.class, field -> {
                 field.setAccessible(true);
                 Cell cell = headerRow.createCell(colNum);
                 cell.setCellValue(field.getName());
@@ -39,11 +36,11 @@ public class OrderPoi {
                 colNum++;
             });
 
-            for (int rowNum = 0; rowNum < orderInfoExcels.size(); rowNum++) {
+            for (int rowNum = 0; rowNum < orderItemDTOList.size(); rowNum++) {
                 Row row = sheet.createRow(rowNum+1);
                 colNum = 0;
-                OrderExcelItem orderInfoExcel = orderInfoExcels.get(rowNum);
-                ReflectionUtils.doWithFields(OrderExcelItem.class, field -> {
+                OrderItemDTO orderInfoExcel = orderItemDTOList.get(rowNum);
+                ReflectionUtils.doWithFields(OrderItemDTO.class, field -> {
                     field.setAccessible(true);
                     Cell cell = row.createCell(colNum);
                     CellStyle cellContentStyle = createContentStyle(workbook);
@@ -94,31 +91,5 @@ public class OrderPoi {
         return cellStyle;
     }
 
-    private OrderExcelItem convert(OrderInfoDo order) {
-        OrderExcelItem orderInfoExcel = new OrderExcelItem();
-        orderInfoExcel.setCarriageId(order.getCarriageId());
-        orderInfoExcel.setId(order.getId());
-        orderInfoExcel.setPayWay(order.getPayWay());
-        orderInfoExcel.setPrice(order.getPrice());
-        orderInfoExcel.setRegistration(order.getRegistration());
-        orderInfoExcel.setStatus(order.getStatus());
-        orderInfoExcel.setSettlementPrice(order.getSettlementPrice());
-        orderInfoExcel.setUid(order.getUid());
-        orderInfoExcel.setPlatform(order.getPlatform());
-        String receiverIverInfo = new StringBuilder("收件人:").append(order.getReceiverName()).append("\n")
-                .append("收件号码").append(order.getReceiverPhone()).append("\n")
-                .append("收件地址").append(order.getReceiverAddress()).append("\n").toString();
 
-        orderInfoExcel.setReceiverInfo(receiverIverInfo);
-        StringBuilder goodsInfoStringBuilder = new StringBuilder("");
-        AtomicInteger goodsNum = new AtomicInteger();
-        order.getGoodsInfos().forEach(goodsInfo -> {
-            goodsInfoStringBuilder.append(goodsInfo.getName()).append("\n");
-            goodsNum.addAndGet(goodsInfo.getNum());
-        });
-        orderInfoExcel.setGoodsInfo(goodsInfoStringBuilder.toString());
-        orderInfoExcel.setGoodsNum(goodsNum.get());
-
-        return orderInfoExcel;
-    }
 }

@@ -20,13 +20,13 @@
         <result property="payWay" column="pay_way"/>
         <result property="platform" column="platform"/>
 
-        <collection property="goodsInfoDOS" javaType="ArrayList" ofType="com.newler.jdweb.data.dojo.OrderGoodsDoDO"
+        <collection property="goodsInfos" javaType="ArrayList" ofType="com.newler.jdweb.DO.OrderGoodsDO"
                     columnPrefix="g_">
             <id column="id" property="id"/>
             <result property="goodsUrl" column="url"/>
             <result property="price" column="price"/>
             <result property="name" column="name"/>
-            <result property="goodsNum" column="num"/>
+            <result property="num" column="num"/>
         </collection>
     </resultMap>
 
@@ -45,12 +45,12 @@
     </sql>
 
 
-    <select id="getOrderListByOrderId" resultMap="orderInfoExcel">
+    <select id="getOrderDetailById" resultMap="orderInfoExcel">
         <include refid="selectOrder"/>
         WHERE o.id = #{orderId};
     </select>
 
-    <select id="getOrderListBySearchParams" resultMap="orderInfoExcel" parameterType="com.newler.jdweb.dto.SearchOrder">
+    <select id="getOrderListBySearchParams" resultMap="orderInfoExcel" parameterType="com.newler.jdweb.dto.SearchOrderParams">
         <include refid="selectOrder"/>
         <if test="searchOrder != null">
             WHERE 1=1
@@ -65,13 +65,22 @@
                     AND o.date &gt;= #{searchOrder.startDate}
                 </when>
                 <when test="searchOrder.endDate != null">
-                    AND o.date &gt;= #{searchOrder.endDate}
+                    AND o.date &lt;= #{searchOrder.endDate}
                 </when>
                 <when test="searchOrder.goodsName != null">
                     AND g.name LIKE #{searchOrder.goodsName}
                 </when>
                 <when test="searchOrder.platform != null">
-                    AND g.platform = #{searchOrder.platform}
+                    AND o.platform = #{searchOrder.platform}
+                </when>
+                <when test="searchOrder.settlePrice != null">
+                    AND o.settle_price &gt; #{searchOrder.settlePrice}
+                </when>
+                <when test="searchOrder.registration != null">
+                    AND o.registration = #{searchOrder.registration}
+                </when>
+                <when test="searchOrder.uid != null">
+                    AND o.uid = #{searchOrder.uid}
                 </when>
             </choose>
         </if>
@@ -80,7 +89,7 @@
 
     <delete id="deleteOrder" parameterType="long">
         DELETE
-        FROM orderInfoExcel
+        FROM orderinfo
         WHERE id = #{orderId}
     </delete>
 
@@ -93,7 +102,7 @@
                 #{status}, #{uid}, #{payWay}, #{platform}, #{settleTime}, #{settlementPrice})
     </insert>
 
-    <update id="updateOrder">
+    <update id="updateOrder" parameterType="com.newler.jdweb.DO.OrderInfoDo">
         UPDATE orderinfo
         SET carriage_id     = #{carriageId},
             carriage_url= #{carriageUrl},
@@ -108,7 +117,7 @@
             uid= #{uid},
             pay_way= #{payWay},
             platform= #{platform},
-            settle_time= #{settleTime},
+            settle_time = #{settleTime},
             settlement_price= #{settlementPrice}
         WHERE id = #{id}
     </update>
